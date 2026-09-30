@@ -1,0 +1,52 @@
+name: Manual C# Homework Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_folder:
+        description: 'Select the C# Homework Project to Build'
+        required: true
+        default: 'csharp-prep/Prep1'
+        type: choice
+        options:
+          - 'csharp-prep/Prep1'
+          - 'csharp-prep/Prep2'
+          - 'csharp-prep/Prep3'
+          - 'csharp-prep/Prep4'
+          - 'csharp-prep/Prep5'
+          - 'prepare/Learning02'
+          - 'prepare/Learning03'
+          - 'prepare/Learning04'
+          - 'prepare/Learning05'
+          - 'prove/Develop02'
+          - 'prove/Develop03'
+          - 'prove/Develop04'
+          - 'prove/Develop05'
+          - 'final/FinalProject'
+          - 'final/Foundation2'
+          - 'final/Foundation3'
+          - 'final/Foundation4'
+          - 'sandbox/Sandbox'
+
+jobs:
+  build-selected-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      # Build single selected project folder
+      - name: Build Single Homework Project
+        working-directory: ./${{ github.event.inputs.project_folder }}
+        run: |
+          echo "Building project in ./${{ github.event.inputs.project_folder }}"
+          dotnet build --configuration Release
