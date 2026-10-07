@@ -1,0 +1,10 @@
+site_name: My Project Documentation
+site_description: Documentation for My Project
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
