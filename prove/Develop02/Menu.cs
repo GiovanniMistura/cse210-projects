@@ -1,8 +1,8 @@
 using System;
 class Menu()
 {
-    public Journal _journal = new Journal();
-    public string _fileName = "";
+    private Journal _journal = new Journal();
+    private string _fileName = "";
 
     // Array for the random prompts.
     string[] _prompts = ["What is your favourite color?","What is your favourite food?","What is your favourite sport?",
@@ -64,12 +64,12 @@ class Menu()
     {
         Random rnd = new Random();
         Entry e = new Entry();
-        int rnd_num = rnd.Next(0,_prompts.Length-1);
-        Console.WriteLine(_prompts[rnd_num]);
+        int rnd_num = rnd.Next(0,this._prompts.Length-1);
+        Console.WriteLine(this._prompts[rnd_num]);
         Console.Write("> ");
-        e._input = Console.ReadLine();
-        e._prompt = _prompts[rnd_num];
-        e._date = DateTime.Now.ToString("dd/MM/yyyy");
+        e.setInput(Console.ReadLine());
+        e.setPrompt(_prompts[rnd_num]);
+        e.setDate(DateTime.Now.ToString("dd/MM/yyyy"));
         _journal.AddEntry(e);
 
     }

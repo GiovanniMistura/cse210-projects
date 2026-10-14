@@ -1,14 +1,15 @@
 using System;
+using System.Dynamic;
 using System.Text;
 
 class Journal()
 {
-    public List<Entry> _entries = new List<Entry>();
+    private List<Entry> _entries = new List<Entry>();
 
     // Add an Entry to the array _entries
     public void AddEntry(Entry e)
     {
-        _entries.Add(e);
+       _entries.Add(e);
     }
 
     // Displays the array _entries
@@ -38,7 +39,7 @@ class Journal()
             {
                 foreach (Entry e in _entries)
                 {
-                    sw.WriteLine(e._date  + "~" + e._prompt + "~" + e._input);
+                    sw.WriteLine(e.getDate()  + "~" + e.getPrompt() + "~" + e.getInput());
                 }
                  
             }   
@@ -69,10 +70,9 @@ class Journal()
                     // gets the attributes, each separated by ~
                    string[] entries = line.Split("~");
                    Entry e = new Entry();
-                   e._date = entries[0];
-                   e._prompt = entries[1];
-                   e._input = entries[2];
-
+                   e.setDate(entries[0]);
+                   e.setPrompt(entries[1]);
+                   e.setInput(entries[2]);
                    _entries.Add(e);
 
                 }
@@ -85,4 +85,5 @@ class Journal()
             Environment.Exit(1);
         }
     }
+
 }
