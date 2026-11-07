@@ -4,6 +4,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop04 World!");
+        // initialize different activities
+        BreathingActivity breathingActivity = new BreathingActivity("breathing activity",
+            "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
+        ReflectionActivity reflectionActivity = new ReflectionActivity("reflection activity",
+            "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+        ListingActivity listingActivity = new ListingActivity("listing activity",
+            "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+            
+        // initialize and start menu
+        Menu menu = new Menu(breathingActivity,listingActivity,reflectionActivity);
+        menu.StartMenu();
     }
 }
